@@ -81,15 +81,17 @@ fun HomeScreen() {
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                Text(
-                    modifier = Modifier
-                        .padding(horizontal = 15.dp),
-                    text = "Gratuidade",
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = colorResource(id = R.color.orange_text)
-                )
+                Column {
+                    Text(
+                        modifier = Modifier
+                            .padding(horizontal = 15.dp),
+                        text = "Gratuidade",
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = colorResource(id = R.color.orange_text)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(4.dp))
 
@@ -116,15 +118,17 @@ fun HomeScreen() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(
-                    modifier = Modifier
-                        .padding(horizontal = 15.dp),
-                    text = "Copagamento",
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = colorResource(id = R.color.orange_text)
-                )
+                Column {
+                    Text(
+                        modifier = Modifier
+                            .padding(horizontal = 15.dp),
+                        text = "Copagamento",
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = colorResource(id = R.color.orange_text)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(4.dp))
 
