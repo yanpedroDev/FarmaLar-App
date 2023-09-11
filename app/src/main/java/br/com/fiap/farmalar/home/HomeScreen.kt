@@ -93,10 +93,25 @@ fun HomeScreen() {
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                Row {
-                    CheckBoxStyle(text = "Asma")
-                    CheckBoxStyle(text = "Diabetes")
-                    CheckBoxStyle(text = "Hipertensão")
+                Column {
+                    Row {
+                        CheckBoxStyle(text = "Asma")
+                        Row(
+                            modifier = Modifier.padding(horizontal = 2.dp)
+                        ) {
+                            CheckBoxStyle(text = "Diabetes")
+                        }
+                        Row {
+                            CheckBoxStyle(text = "Hipertensão")
+                        }
+                    }
+                    Row {
+                        CheckBoxStyle(text = "Anticoncepção")
+                        Row {
+                            CheckBoxStyle(text = "Osteoporose")
+                        }
+                    }
+
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -113,35 +128,31 @@ fun HomeScreen() {
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                Row(
-                    modifier = Modifier.padding(horizontal = 2.dp)
-                ) {
-                    CheckBoxStyle(text = "Anticoncepção")
-                    CheckBoxStyle(text = "Dislipidemia")
-                }
-                Row {
-                    CheckBoxStyle(text = "Doença de\nParkinson")
-                    Row(
-                        modifier = Modifier.padding(horizontal = 32.dp)
-                    ) {
-                        CheckBoxStyle(text = "Glaucoma")
+                Column {
+                    Row {
+                        CheckBoxStyle(text = "Dislipidemia")
+                        Row(
+                            modifier = Modifier.padding(horizontal = 41.dp)
+                        ) {
+                            CheckBoxStyle(text = "Rinite")
+                        }
                     }
-                }
-                Row {
-                    CheckBoxStyle(text = "Incontinência")
-                    Row(
-                        modifier = Modifier.padding(horizontal = 14.dp)
-                    ) {
-                        CheckBoxStyle(text = "Osteoporose")
+                    Row {
+                        CheckBoxStyle(text = "Doença de\nParkinson")
+                        Row(
+                            modifier = Modifier.padding(horizontal = 49.dp)
+                        ) {
+                            CheckBoxStyle(text = "Glaucoma")
+                        }
                     }
-                }
-
-                Row {
-                    CheckBoxStyle(text = "Doenca\nCardiovascular")
-                    Row(
-                        modifier = Modifier.padding(horizontal = 2.dp)
-                    ) {
-                        CheckBoxStyle(text = "Rinite")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Row {
+                        CheckBoxStyle(text = "Doença\nCardiovascular")
+                        Row(
+                            modifier = Modifier.padding(horizontal = 19.dp)
+                        ) {
+                            CheckBoxStyle(text = "Incontinência")
+                        }
                     }
                 }
 
@@ -163,7 +174,8 @@ fun HomeScreen() {
                             placeholderColor = colorResource(id = R.color.part_black),
                             containerColor = colorResource(id = R.color.transparent),
                             focusedBorderColor = colorResource(id = R.color.orange_text),
-                            unfocusedBorderColor = colorResource(id = R.color.part_black)),
+                            unfocusedBorderColor = colorResource(id = R.color.part_black)
+                        ),
                         label = {
                             Text(
                                 text = "Digite o nome do seu medicamento"
@@ -198,8 +210,10 @@ fun HomeScreen() {
                     Button(
                         modifier = Modifier.size(150.dp, 50.dp),
                         onClick = {},
-                        colors = ButtonDefaults.buttonColors(colorResource
-                            (id = R.color.orange_button)),
+                        colors = ButtonDefaults.buttonColors(
+                            colorResource
+                                (id = R.color.orange_button)
+                        ),
                         elevation = ButtonDefaults.elevatedButtonElevation(2.dp),
                         border = BorderStroke(2.dp, colorResource(id = R.color.orange_text))
                     ) {
