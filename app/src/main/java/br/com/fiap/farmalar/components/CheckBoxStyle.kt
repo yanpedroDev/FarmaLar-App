@@ -1,10 +1,8 @@
 package br.com.fiap.farmalar.components
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Text
@@ -25,70 +23,47 @@ import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
 fun CheckBoxStyle(
-    text1: String,
-    text2: String
+    text: String
 ) {
 
-    var patologia_first_column by remember {
+    var patologias by remember {
         mutableStateOf(false)
     }
 
+    Column {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
 
-    var patologia_second_column by remember {
-        mutableStateOf(false)
-    }
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    )
-
-    {
-
-        Checkbox(
-            checked = patologia_first_column,
-            onCheckedChange = {
-                    isSelected -> patologia_first_column = isSelected
-            },
-            colors = CheckboxDefaults.colors(
-                uncheckedColor = colorResource(id = R.color.light_gray),
-                checkedColor = colorResource(id = R.color.orange_button),
-                checkmarkColor = colorResource(id = R.color.white)
+            Checkbox(
+                checked = patologias,
+                onCheckedChange = { isSelected ->
+                    patologias = isSelected
+                },
+                colors = CheckboxDefaults.colors(
+                    uncheckedColor = colorResource(id = R.color.light_gray),
+                    checkedColor = colorResource(id = R.color.orange_button),
+                    checkmarkColor = colorResource(id = R.color.white)
+                )
             )
-        )
 
-        Text(
-            modifier = Modifier.offset((-5).dp),
-            text = text1,
-            textAlign = TextAlign.Start,
-            fontSize = 16.sp,
-            fontFamily = Inter,
-            fontWeight = FontWeight.SemiBold
-        )
-
-        Spacer(modifier = Modifier.padding(12.dp))
-
-        Checkbox(
-            checked = patologia_second_column,
-            onCheckedChange = {
-                    isSelected -> patologia_second_column = isSelected
-            },
-            colors = CheckboxDefaults.colors(
-                uncheckedColor = colorResource(id = R.color.light_gray),
-                checkedColor = colorResource(id = R.color.orange_button),
-                checkmarkColor = colorResource(id = R.color.white)
+            Text(
+                modifier = Modifier.offset((-5).dp),
+                text = text,
+                textAlign = TextAlign.Start,
+                fontSize = 16.sp,
+                fontFamily = Inter,
+                fontWeight = FontWeight.SemiBold
             )
-        )
-
-        Text(
-            modifier = Modifier.offset((-5).dp),
-            text = text2,
-            fontSize = 16.sp,
-            fontFamily = Inter,
-            fontWeight = FontWeight.SemiBold
-        )
-
+        }
     }
-
 }
+
+
+
+
+
+
+
+
 
