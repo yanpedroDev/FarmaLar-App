@@ -15,7 +15,7 @@ fun HeaderLogo() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp, 20.dp)
+            .padding(10.dp, 20.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.farmalar_logo),
