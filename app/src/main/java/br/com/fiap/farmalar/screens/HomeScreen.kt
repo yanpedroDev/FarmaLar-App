@@ -1,4 +1,4 @@
-package br.com.fiap.farmalar.home
+package br.com.fiap.farmalar.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
