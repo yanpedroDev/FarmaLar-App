@@ -36,6 +36,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.CheckBoxStyle
 import br.com.fiap.farmalar.components.HeaderLogo
@@ -43,7 +44,7 @@ import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
 
     var searchText by remember {
         mutableStateOf("")
@@ -213,7 +214,9 @@ fun HomeScreen() {
                 ) {
                     Button(
                         modifier = Modifier.size(150.dp, 50.dp),
-                        onClick = {},
+                        onClick = {
+                                  navController.navigate("search")
+                        },
                         colors = ButtonDefaults.buttonColors(
                             colorResource
                                 (id = R.color.orange_button)
