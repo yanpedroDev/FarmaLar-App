@@ -44,7 +44,7 @@ import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController) {
+fun MenuScreen(navController: NavController) {
 
     var searchText by remember {
         mutableStateOf("")
@@ -215,7 +215,7 @@ fun HomeScreen(navController: NavController) {
                     Button(
                         modifier = Modifier.size(150.dp, 50.dp),
                         onClick = {
-                                  navController.navigate("search")
+                                  navController.navigate("busca")
                         },
                         colors = ButtonDefaults.buttonColors(
                             colorResource
