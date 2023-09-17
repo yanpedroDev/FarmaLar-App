@@ -1,8 +1,7 @@
 package br.com.fiap.farmalar.screens
 
-import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,11 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,7 +33,7 @@ import br.com.fiap.farmalar.components.HeaderLogo
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
-fun SearchScreen(navController: NavController) {
+fun BuscaScreen(navController: NavController) {
 
     Box(
         modifier = Modifier
@@ -53,10 +53,10 @@ fun SearchScreen(navController: NavController) {
 
             ) {
                 Text(
-                    text = "Resultado da sua busca",
+                    text = "Resultado da sua busca:",
                     fontFamily = Inter,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
+                    fontSize = 20.sp,
                     color = colorResource(id = R.color.orange_text)
                 )
 
@@ -86,9 +86,7 @@ fun SearchScreen(navController: NavController) {
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
+            Spacer(modifier = Modifier.height(10.dp))
 
             Column(
                 modifier = Modifier
@@ -102,12 +100,13 @@ fun SearchScreen(navController: NavController) {
                 Column {
                     Column {
                         for (i in 0..8) {
-                            CardSelect(text = "Cloridatro de Metformina 850mg")
+                            CardSelect(navController)
                             Spacer(modifier = Modifier.height(8.dp))
                         }
                     }
                 }
             }
+
         }
     }
 }

@@ -10,8 +10,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.farmalar.screens.HomeScreen
-import br.com.fiap.farmalar.screens.SearchScreen
+import br.com.fiap.farmalar.screens.MenuScreen
+import br.com.fiap.farmalar.screens.BuscaScreen
+import br.com.fiap.farmalar.components.CardSelect
+import br.com.fiap.farmalar.screens.ReservaScreen
 import br.com.fiap.farmalar.ui.theme.FarmaLarTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,13 +29,16 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "home"
+                        startDestination = "menu"
                     ) {
-                        composable(route = "home") {
-                            HomeScreen(navController)
+                        composable(route = "menu") {
+                            MenuScreen(navController)
                         }
-                        composable(route = "search") {
-                            SearchScreen(navController)
+                        composable(route = "busca") {
+                            BuscaScreen(navController)
+                        }
+                        composable(route = "reserva") {
+                            ReservaScreen(navController)
                         }
                     }
                 }
