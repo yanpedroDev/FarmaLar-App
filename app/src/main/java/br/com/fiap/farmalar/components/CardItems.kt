@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -20,14 +22,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.ui.theme.Inter
 
 
 @Composable
-fun CardItems() {
+fun CardItems(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -233,6 +237,46 @@ fun CardItems() {
                             )
                         }
                     }
+                }
+            }
+        }
+    }
+    Spacer(modifier = Modifier.height(40.dp))
+    Column {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                modifier = Modifier
+                    .padding(horizontal = 40.dp)
+                    .size(60.dp, 50.dp),
+                painter =
+                painterResource(id = R.drawable.icon_24_hours),
+                contentDescription = "Ícone da logo 24 horas"
+            )
+            Row {
+                Button(
+                    modifier = Modifier
+                        .size(250.dp, 50.dp)
+                        .offset((-25).dp),
+                    onClick = {
+                        navController.navigate("menu")
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        colorResource
+                            (id = R.color.orange_button)
+                    ),
+                    elevation = ButtonDefaults.elevatedButtonElevation(2.dp),
+                    border = BorderStroke(2.dp, colorResource(id = R.color.orange_text))
+                ) {
+                    Text(
+                        text = "Concluir Reserva",
+                        textAlign = TextAlign.Center,
+                        fontFamily = Inter,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colorResource(id = R.color.white)
+                    )
                 }
             }
         }
