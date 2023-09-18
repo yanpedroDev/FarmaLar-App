@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.com.fiap.farmalar.model.Medicamento
 
-@Database(entities = [Medicamento::class], version = 1)
+@Database(entities = [Medicamento::class], version = 3)
 abstract class MedicamentoDb: RoomDatabase() {
 
     abstract fun MedicamentoDao(): MedicamentoDao

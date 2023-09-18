@@ -43,14 +43,14 @@ fun criaListaMedicamentosPadroes(): List<Medicamento> {
         Medicamento(id = 24, nome = "Sinvastatina 10mg", patologia = "DISLIPIDEMIA", modalidade = "GRATUIDADE"),
         Medicamento(id = 25, nome = "Sinvastatina 20mg", patologia = "DISLIPIDEMIA", modalidade = "GRATUIDADE"),
         Medicamento(id = 26, nome = "Sinvastatina 40mg", patologia = "DISLIPIDEMIA", modalidade = "GRATUIDADE"),
-        Medicamento(id = 27, nome = "Carbidopa 25mg + Levodopa 250mg", patologia = "DOENCA DE PARKINSON", modalidade = "GRATUIDADE"),
-        Medicamento(id = 28, nome = "Cloridrato de Benserazida 25mg + Levodopa 100mg", patologia = "DOENCA DE PARKINSON", modalidade = "GRATUIDADE"),
+        Medicamento(id = 27, nome = "Carbidopa 25mg + Levodopa 250mg", patologia = "DOENÇA DE PARKINSON", modalidade = "GRATUIDADE"),
+        Medicamento(id = 28, nome = "Cloridrato de Benserazida 25mg + Levodopa 100mg", patologia = "DOENÇA DE PARKINSON", modalidade = "GRATUIDADE"),
         Medicamento(id = 29, nome = "Maleato de Timolol 2,5mg", patologia = "GLAUCOMA", modalidade = "GRATUIDADE"),
         Medicamento(id = 30, nome = "Maleato de Timolol 5mg", patologia = "GLAUCOMA", modalidade = "GRATUIDADE"),
         Medicamento(id = 31, nome = "Fralda Geriátrica", patologia = "INCONTINÊNCIA", modalidade = "GRATUIDADE"),
         Medicamento(id = 32, nome = "Alendronato de Sódio 70mg", patologia = "OSTEOPOROSE", modalidade = "GRATUIDADE"),
         Medicamento(id = 33, nome = "Budesonida 32mcg", patologia = "RINITE", modalidade = "GRATUIDADE"),
         Medicamento(id = 34, nome = "Budesonida 50mcg", patologia = "RINITE", modalidade = "GRATUIDADE"),
-        Medicamento(id = 35, nome = "Dapagliflozina 10mg", patologia = "DM I + DOENÇA CARDIOVASCULAR (>65ANOS)", modalidade = "GRATUIDADE")
+        Medicamento(id = 35, nome = "Dapagliflozina 10mg", patologia = "DOENÇA CARDIOVASCULAR", modalidade = "GRATUIDADE")
     )
 }

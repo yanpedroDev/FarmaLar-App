@@ -29,6 +29,6 @@ class MedicamentoRepository(context: Context) {
     }
 
     fun listaMedicamentosPelaPatologia(patologia: String): List<Medicamento> {
-        return db.listarmedicamentosPelaPatologia(patologia = patologia.uppercase())
+        return db.listarmedicamentosPelaPatologia(patologia = patologia.replace("\n", " ").uppercase())
     }
 }
