@@ -109,12 +109,12 @@ fun MenuScreen(navController: NavController, medicamentoViewModel: MedicamentoVi
                             CheckBoxStyle(text = "Hipertensão", medicamentoViewModel)
                         }
                     }
-                    Row {
-                        CheckBoxStyle(text = "Anticoncepção", medicamentoViewModel)
-                        Row {
-                            CheckBoxStyle(text = "Osteoporose", medicamentoViewModel)
-                        }
-                    }
+//                    Row {
+//                        CheckBoxStyle(text = "Anticoncepção", medicamentoViewModel)
+//                        Row {
+//                            CheckBoxStyle(text = "Osteoporose", medicamentoViewModel)
+//                        }
+//                    }
 
                 }
 
@@ -135,6 +135,15 @@ fun MenuScreen(navController: NavController, medicamentoViewModel: MedicamentoVi
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Column {
+
+                    Row {
+                        CheckBoxStyle(text = "Anticoncepção", medicamentoViewModel)
+                        Row(
+                            modifier = Modifier.padding(horizontal = 18.dp)
+                        ) {
+                            CheckBoxStyle(text = "Osteoporose", medicamentoViewModel)
+                        }
+                    }
                     Row {
                         CheckBoxStyle(text = "Dislipidemia", medicamentoViewModel)
                         Row(
