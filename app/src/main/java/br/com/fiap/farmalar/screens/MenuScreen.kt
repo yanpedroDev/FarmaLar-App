@@ -40,11 +40,12 @@ import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.CheckBoxStyle
 import br.com.fiap.farmalar.components.HeaderLogo
+import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MenuScreen(navController: NavController) {
+fun MenuScreen(navController: NavController, medicamentoViewModel: MedicamentoViewModel) {
 
     var searchText by remember {
         mutableStateOf("")
@@ -98,20 +99,20 @@ fun MenuScreen(navController: NavController) {
 
                 Column {
                     Row {
-                        CheckBoxStyle(text = "Asma")
+                        CheckBoxStyle(text = "Asma", medicamentoViewModel)
                         Row(
                             modifier = Modifier.padding(horizontal = 2.dp)
                         ) {
-                            CheckBoxStyle(text = "Diabetes")
+                            CheckBoxStyle(text = "Diabetes", medicamentoViewModel)
                         }
                         Row {
-                            CheckBoxStyle(text = "Hipertensão")
+                            CheckBoxStyle(text = "Hipertensão", medicamentoViewModel)
                         }
                     }
                     Row {
-                        CheckBoxStyle(text = "Anticoncepção")
+                        CheckBoxStyle(text = "Anticoncepção", medicamentoViewModel)
                         Row {
-                            CheckBoxStyle(text = "Osteoporose")
+                            CheckBoxStyle(text = "Osteoporose", medicamentoViewModel)
                         }
                     }
 
@@ -135,28 +136,28 @@ fun MenuScreen(navController: NavController) {
 
                 Column {
                     Row {
-                        CheckBoxStyle(text = "Dislipidemia")
+                        CheckBoxStyle(text = "Dislipidemia", medicamentoViewModel)
                         Row(
                             modifier = Modifier.padding(horizontal = 41.dp)
                         ) {
-                            CheckBoxStyle(text = "Rinite")
+                            CheckBoxStyle(text = "Rinite", medicamentoViewModel)
                         }
                     }
                     Row {
-                        CheckBoxStyle(text = "Doença de\nParkinson")
+                        CheckBoxStyle(text = "Doença de\nParkinson", medicamentoViewModel)
                         Row(
                             modifier = Modifier.padding(horizontal = 49.dp)
                         ) {
-                            CheckBoxStyle(text = "Glaucoma")
+                            CheckBoxStyle(text = "Glaucoma", medicamentoViewModel)
                         }
                     }
                     Spacer(modifier = Modifier.height(4.dp))
                     Row {
-                        CheckBoxStyle(text = "Doença\nCardiovascular")
+                        CheckBoxStyle(text = "Doença\nCardiovascular", medicamentoViewModel)
                         Row(
                             modifier = Modifier.padding(horizontal = 19.dp)
                         ) {
-                            CheckBoxStyle(text = "Incontinência")
+                            CheckBoxStyle(text = "Incontinência", medicamentoViewModel)
                         }
                     }
                 }

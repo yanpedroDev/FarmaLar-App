@@ -28,11 +28,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
+import br.com.fiap.farmalar.model.Medicamento
+import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
 fun CardSelect(
-    navController: NavController
+    navController: NavController,
+    medicamento: Medicamento,
+    medicamentoViewModel: MedicamentoViewModel
 ) {
     Card(
         modifier = Modifier
@@ -61,7 +65,7 @@ fun CardSelect(
                     modifier = Modifier
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    text = "Cloridatro de Metformina 850mg",
+                    text = medicamento.nome,
                     fontFamily = Inter,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 12.sp,
@@ -104,6 +108,7 @@ fun CardSelect(
                 Button(
                     modifier = Modifier.size(120.dp, 37.dp),
                     onClick = {
+                        medicamentoViewModel.limpaListaDePatologias()
                         navController.navigate("menu")
                     },
                     colors = ButtonDefaults.buttonColors(

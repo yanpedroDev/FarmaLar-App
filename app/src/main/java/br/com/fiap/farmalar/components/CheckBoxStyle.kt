@@ -8,6 +8,7 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -19,16 +20,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.farmalar.R
+import br.com.fiap.farmalar.model.Medicamento
+import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
 fun CheckBoxStyle(
-    text: String
+    text: String,
+    medicamentoViewModel: MedicamentoViewModel
 ) {
 
     var patologias by remember {
         mutableStateOf(false)
     }
+
+    val listaDeMedicamentos by medicamentoViewModel
+        .patologiasState
+        .observeAsState(initial =  mutableListOf())
 
     Column {
         Row(
@@ -39,6 +47,9 @@ fun CheckBoxStyle(
                 checked = patologias,
                 onCheckedChange = { isSelected ->
                     patologias = isSelected
+                    if (patologias){
+                        medicamentoViewModel.onPatologiasChanged(text)
+                    }
                 },
                 colors = CheckboxDefaults.colors(
                     uncheckedColor = colorResource(id = R.color.light_gray),

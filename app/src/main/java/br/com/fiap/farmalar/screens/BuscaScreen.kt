@@ -1,5 +1,6 @@
 package br.com.fiap.farmalar.screens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -30,10 +31,16 @@ import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.CardSelect
 import br.com.fiap.farmalar.components.HeaderLogo
+import br.com.fiap.farmalar.model.Medicamento
+import br.com.fiap.farmalar.model.MedicamentoViewModel
+import br.com.fiap.farmalar.repository.MedicamentoRepository
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
-fun BuscaScreen(navController: NavController) {
+fun BuscaScreen(navController: NavController, context: Context, medicamentoViewModel: MedicamentoViewModel, medicamentoRepository: MedicamentoRepository) {
+
+    val medicamentos: List<Medicamento> = medicamentoViewModel.listaMedicamentosPelasPatologias(medicamentoRepository)
+
 
     Box(
         modifier = Modifier
@@ -99,8 +106,8 @@ fun BuscaScreen(navController: NavController) {
             {
                 Column {
                     Column {
-                        for (i in 0..8) {
-                            CardSelect(navController)
+                        for (medicamento in medicamentos) {
+                            CardSelect(navController, medicamento, medicamentoViewModel)
                             Spacer(modifier = Modifier.height(8.dp))
                         }
                     }
