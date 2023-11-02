@@ -14,4 +14,6 @@
     <color name="orange_button">#BAFF3702</color>
     <color name="orange_circle">#FFDC3333</color>
     <color name="green_text">#BA2F9F5C</color>
+    <color name="color_card">#40DBD1D1</color>
+    <color name="stroke_card">#4D8A8686</color>
 </resources>
