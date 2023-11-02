@@ -13,10 +13,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.farmalar.screens.MenuScreen
 import br.com.fiap.farmalar.screens.BuscaScreen
-import br.com.fiap.farmalar.components.CardSelect
 import br.com.fiap.farmalar.dao.salvaMedicamentosPadroes
 import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.repository.MedicamentoRepository
+import br.com.fiap.farmalar.screens.BoasVindas
 import br.com.fiap.farmalar.screens.ReservaScreen
 import br.com.fiap.farmalar.ui.theme.FarmaLarTheme
 
@@ -38,8 +38,11 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "menu"
+                        startDestination = "boas-vindas"
                     ) {
+                        composable(route = "boas-vindas") {
+                            BoasVindas(navController)
+                        }
                         composable(route = "menu") {
                             MenuScreen(navController, medicamentoViewModel)
                         }
