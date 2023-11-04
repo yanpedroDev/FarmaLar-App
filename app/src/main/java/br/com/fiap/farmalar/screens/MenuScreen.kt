@@ -109,13 +109,6 @@ fun MenuScreen(navController: NavController, medicamentoViewModel: MedicamentoVi
                             CheckBoxStyle(text = "Hipertensão", medicamentoViewModel)
                         }
                     }
-//                    Row {
-//                        CheckBoxStyle(text = "Anticoncepção", medicamentoViewModel)
-//                        Row {
-//                            CheckBoxStyle(text = "Osteoporose", medicamentoViewModel)
-//                        }
-//                    }
-
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
