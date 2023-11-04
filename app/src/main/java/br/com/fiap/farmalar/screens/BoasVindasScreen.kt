@@ -18,7 +18,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,7 +32,6 @@ import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.ui.theme.Inter
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BoasVindas(navController: NavController) {
 
@@ -60,9 +58,7 @@ fun BoasVindas(navController: NavController) {
 
         Spacer(modifier = Modifier.height(80.dp))
 
-        Column(
-//            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        Column {
             Card(
                 shape = RoundedCornerShape(45.dp),
                 colors = CardDefaults.cardColors(colorResource(id = R.color.color_card)),
@@ -94,7 +90,7 @@ fun BoasVindas(navController: NavController) {
                             .fillMaxWidth()
                             .padding(horizontal = 20.dp),
                         textAlign = TextAlign.Start,
-                        text = "Caso já tenha uma conta,\nclique em entrar, senão, clique\nem começar",
+                        text = "Caso já tenha uma conta,\nclique em Entrar, senão, clique\nem Começar",
                         fontFamily = Inter,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Medium,
@@ -138,12 +134,12 @@ fun BoasVindas(navController: NavController) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .offset(y = -75.dp)
+                        .offset(y = (-75).dp)
                 ) {
                     Button(
                         modifier = Modifier.size(300.dp, 60.dp),
                         onClick = {
-                            navController.navigate("menu")
+                            navController.navigate("cadastro")
                         },
                         colors = ButtonDefaults.buttonColors(
                             colorResource
