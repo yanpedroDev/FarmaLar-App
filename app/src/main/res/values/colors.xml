@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="part_black">#33000000</color>
+    <color name="half_black">#80000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#0A131111</color>
     <color name="light_gray">#FFD9D9D9</color>
@@ -16,4 +17,7 @@
     <color name="green_text">#BA2F9F5C</color>
     <color name="color_card">#40DBD1D1</color>
     <color name="stroke_card">#4D8A8686</color>
+    <color name="titulo_cadastro_usuarios">#242323</color>
+    <color name="borda_inputs_cadastro">#B3BFBBBB</color>
+    <color name="color_icons">#B3B0AFAF</color>
 </resources>
