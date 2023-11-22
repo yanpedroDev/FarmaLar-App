@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.ui.theme.Inter
+import androidx.compose.foundation.Image
+import androidx.compose.material3.contentColorFor
 
 @Composable
 fun BoasVindas(navController: NavController) {
@@ -42,7 +44,7 @@ fun BoasVindas(navController: NavController) {
     }
     Column()
     {
-        Spacer(modifier = Modifier.height(120.dp))
+        Spacer(modifier = Modifier.height(60.dp))
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
@@ -56,7 +58,7 @@ fun BoasVindas(navController: NavController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(80.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         Column {
             Card(
@@ -64,7 +66,7 @@ fun BoasVindas(navController: NavController) {
                 colors = CardDefaults.cardColors(colorResource(id = R.color.color_card)),
                 border = BorderStroke(1.dp, colorResource(id = R.color.stroke_card)),
                 modifier = Modifier
-                    .size(360.dp, 290.dp)
+                    .size(360.dp, 380.dp)
                     .padding(horizontal = 20.dp)
             ) {
 
@@ -82,7 +84,7 @@ fun BoasVindas(navController: NavController) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
                 Column {
                     Text(
@@ -90,7 +92,8 @@ fun BoasVindas(navController: NavController) {
                             .fillMaxWidth()
                             .padding(horizontal = 20.dp),
                         textAlign = TextAlign.Start,
-                        text = "Caso já tenha uma conta,\nclique em Entrar, senão, clique\nem Começar",
+                        text = "Caso já tenha uma conta, clique em Entrar. Caso não tenha, " +
+                                "clique em Cadastrar Usuário ou Farmácia",
                         fontFamily = Inter,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Medium,
@@ -98,8 +101,10 @@ fun BoasVindas(navController: NavController) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
 
+
+                // Botao de Entrar
+                Spacer(modifier = Modifier.height(20.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxWidth()
@@ -126,38 +131,80 @@ fun BoasVindas(navController: NavController) {
                         )
                     }
                 }
-
             }
-                Spacer(modifier = Modifier.height(20.dp))
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .offset(y = (-75).dp)
+            // Botao de Cadastar Usuario
+            Spacer(modifier = Modifier.height(1.dp))
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .offset(y = (-130).dp)
+            ) {
+                Button(
+                    modifier = Modifier.size(300.dp, 60.dp),
+                    onClick = {
+                        navController.navigate("cadastro-usuario")
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        colorResource
+                            (id = R.color.orange_button)
+                    ),
+                    elevation = ButtonDefaults.elevatedButtonElevation(4.dp),
+                    border = BorderStroke(2.dp, colorResource(id = R.color.orange_button))
                 ) {
-                    Button(
-                        modifier = Modifier.size(300.dp, 60.dp),
-                        onClick = {
-                            navController.navigate("cadastro")
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            colorResource
-                                (id = R.color.orange_button)
-                        ),
-                        elevation = ButtonDefaults.elevatedButtonElevation(4.dp),
-                        border = BorderStroke(2.dp, colorResource(id = R.color.orange_button))
-                    ) {
-                        Text(
-                            text = "Começar",
-                            textAlign = TextAlign.Center,
-                            fontFamily = Inter,
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = colorResource(id = R.color.white)
-                        )
-                    }
+                    Text(
+                        text = "Cadastrar Usuário",
+                        textAlign = TextAlign.Center,
+                        fontFamily = Inter,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colorResource(id = R.color.white)
+                    )
                 }
+
+                Column(modifier = Modifier
+                    .height(12.dp)
+                ) {
+                }
+                Image(modifier = Modifier.padding(5.dp),
+                    painter = painterResource(id = R.drawable.line_divisor),
+                    contentDescription = "Linha divisoria")
+                    contentColorFor(backgroundColor = colorResource(id = R.color.black))
+            }
+
+
+
+            // Botao de Cadastar Empresa
+            Spacer(modifier = Modifier.height(1.dp))
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .offset(y = (-120).dp)
+            ) {
+                Button(
+                    modifier = Modifier.size(300.dp, 60.dp),
+                    onClick = {
+                        navController.navigate("cadastro-farmacia")
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        colorResource
+                            (id = R.color.orange_button)
+                    ),
+                    elevation = ButtonDefaults.elevatedButtonElevation(4.dp),
+                    border = BorderStroke(2.dp, colorResource(id = R.color.orange_text))
+                ) {
+                    Text(
+                        text = "Cadastrar Farmácia",
+                        textAlign = TextAlign.Center,
+                        fontFamily = Inter,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colorResource(id = R.color.white)
+                    )
+                }
+            }
         }
     }
 }
