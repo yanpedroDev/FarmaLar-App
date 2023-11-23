@@ -17,7 +17,10 @@ import br.com.fiap.farmalar.dao.salvaMedicamentosPadroes
 import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.repository.MedicamentoRepository
 import br.com.fiap.farmalar.screens.BoasVindas
+import br.com.fiap.farmalar.screens.CadastroDeFarmacias
+import br.com.fiap.farmalar.screens.CadastroDeFarmacias2
 import br.com.fiap.farmalar.screens.CadastroDeUsuarios
+import br.com.fiap.farmalar.screens.LoginScreen
 import br.com.fiap.farmalar.screens.ReservaScreen
 import br.com.fiap.farmalar.ui.theme.FarmaLarTheme
 
@@ -44,8 +47,17 @@ class MainActivity : ComponentActivity() {
                         composable(route = "boas-vindas") {
                             BoasVindas(navController)
                         }
-                        composable(route = "cadastro") {
+                        composable(route = "cadastro-usuario") {
                             CadastroDeUsuarios(navController)
+                        }
+                        composable(route = "login") {
+                            LoginScreen(navController)
+                        }
+                        composable(route = "cadastro-farmacia") {
+                            CadastroDeFarmacias(navController)
+                        }
+                        composable(route = "cadastro-farmacia2") {
+                            CadastroDeFarmacias2(navController)
                         }
                         composable(route = "menu") {
                             MenuScreen(navController, medicamentoViewModel)

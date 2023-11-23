@@ -33,6 +33,7 @@ import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.ui.theme.Inter
 import androidx.compose.foundation.Image
 import androidx.compose.material3.contentColorFor
+import br.com.fiap.farmalar.components.DivisorLine
 
 @Composable
 fun BoasVindas(navController: NavController) {
@@ -112,7 +113,7 @@ fun BoasVindas(navController: NavController) {
                     Button(
                         modifier = Modifier.size(300.dp, 60.dp),
                         onClick = {
-                            navController.navigate("menu")
+                            navController.navigate("login")
                         },
                         colors = ButtonDefaults.buttonColors(
                             colorResource
@@ -163,17 +164,8 @@ fun BoasVindas(navController: NavController) {
                     )
                 }
 
-                Column(modifier = Modifier
-                    .height(12.dp)
-                ) {
-                }
-                Image(modifier = Modifier.padding(5.dp),
-                    painter = painterResource(id = R.drawable.line_divisor),
-                    contentDescription = "Linha divisoria")
-                    contentColorFor(backgroundColor = colorResource(id = R.color.black))
+                DivisorLine()
             }
-
-
 
             // Botao de Cadastar Empresa
             Spacer(modifier = Modifier.height(1.dp))

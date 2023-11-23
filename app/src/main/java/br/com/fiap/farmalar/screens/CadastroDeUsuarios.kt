@@ -170,55 +170,55 @@ fun CadastroDeUsuarios(navController: NavController) {
                 )
                 // Input do Email [2]
                 {
-                    OutlinedTextField(
-                        // Valor do Input Email
-                        value = inputEmail,
-                        // Variavel de mudança de estado
-                        onValueChange = { inputEmail = it },
-                        shape = RoundedCornerShape(size = 20.dp),
-                        modifier = Modifier.size(325.dp, 60.dp),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                        singleLine = true,
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = colorResource(id = R.color.white),
-                            textColor = colorResource(id = R.color.black),
-                            placeholderColor = colorResource(id = R.color.half_black),
-                            focusedBorderColor = colorResource(id = R.color.orange_text),
-                            unfocusedBorderColor = colorResource(id = R.color.borda_inputs_cadastro),
-                            unfocusedLeadingIconColor = colorResource(id = R.color.color_icons),
-                            focusedLeadingIconColor = colorResource(id = R.color.orange_text),
-                            unfocusedLabelColor = colorResource(id = R.color.half_black),
-                            focusedLabelColor = colorResource(id = R.color.orange_text),
+                OutlinedTextField(
+                    // Valor do Input Email
+                    value = inputEmail,
+                    // Variavel de mudança de estado
+                    onValueChange = { inputEmail = it },
+                    shape = RoundedCornerShape(size = 20.dp),
+                    modifier = Modifier.size(325.dp, 60.dp),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    singleLine = true,
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        containerColor = colorResource(id = R.color.white),
+                        textColor = colorResource(id = R.color.black),
+                        placeholderColor = colorResource(id = R.color.half_black),
+                        focusedBorderColor = colorResource(id = R.color.orange_text),
+                        unfocusedBorderColor = colorResource(id = R.color.borda_inputs_cadastro),
+                        unfocusedLeadingIconColor = colorResource(id = R.color.color_icons),
+                        focusedLeadingIconColor = colorResource(id = R.color.orange_text),
+                        unfocusedLabelColor = colorResource(id = R.color.half_black),
+                        focusedLabelColor = colorResource(id = R.color.orange_text),
 
-                            ),
-                        label = {
-                            Text(
-                                modifier = Modifier.padding(horizontal = 2.dp),
-                                text = "Email",
-                                fontSize = 18.sp,
-                                fontFamily = Inter,
-                                fontWeight = FontWeight.Medium,
-                            )
-                        },
-                        placeholder = {
-                            Text(
-                                modifier = Modifier.padding(horizontal = 4.dp),
-                                text = "Digite seu e-mail",
-                                fontSize = 14.sp,
-                                fontFamily = Inter,
-                                fontWeight = FontWeight.SemiBold,
-                                color = colorResource(id = R.color.half_black)
-                            )
-                        },
-                        leadingIcon = {
-                            Icon(
-                                modifier = Modifier
-                                    .offset(8.dp)
-                                    .size(30.dp, 30.dp),
-                                painter = painterResource(id = R.drawable.input_email),
-                                contentDescription = "Ícone de Email"
-                            )
-                        })
+                        ),
+                    label = {
+                        Text(
+                            modifier = Modifier.padding(horizontal = 2.dp),
+                            text = "E-mail",
+                            fontSize = 18.sp,
+                            fontFamily = Inter,
+                            fontWeight = FontWeight.Medium,
+                        )
+                    },
+                    placeholder = {
+                        Text(
+                            modifier = Modifier.padding(horizontal = 4.dp),
+                            text = "Digite seu e-mail",
+                            fontSize = 14.sp,
+                            fontFamily = Inter,
+                            fontWeight = FontWeight.SemiBold,
+                            color = colorResource(id = R.color.half_black)
+                        )
+                    },
+                    leadingIcon = {
+                        Icon(
+                            modifier = Modifier
+                                .offset(8.dp)
+                                .size(30.dp, 30.dp),
+                            painter = painterResource(id = R.drawable.input_email),
+                            contentDescription = "Ícone de Email"
+                        )
+                    })
                 }
 
                 // Coluna do Sexo [3]
@@ -271,11 +271,11 @@ fun CadastroDeUsuarios(navController: NavController) {
                     }
                 }
 
-                // Coluna da Data de Nascimento [3]
+                // Coluna da Data de Nascimento
                 Column(
                     Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                     verticalArrangement = Arrangement.Center
-                    // Input da Data de Nascimento [3]
+                    // Input da Data de Nascimento
                 ) {
                     OutlinedTextField(
                         // Valor do Input Data de Nascimento
@@ -328,11 +328,11 @@ fun CadastroDeUsuarios(navController: NavController) {
                     )
                 }
 
-                // Coluna da Senha [4]
+                // Coluna da Senha
                 Column(
                     Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                     verticalArrangement = Arrangement.Center
-                    // Input da Senha [4]
+                    // Input da Senha
                 ) {
                     OutlinedTextField(
                         // Valor do Input Senha
@@ -442,7 +442,7 @@ fun CadastroDeUsuarios(navController: NavController) {
                                     .offset(8.dp)
                                     .size(30.dp, 30.dp),
                                 painter = painterResource(id = R.drawable.input_password),
-                                contentDescription = "Ícone de Email"
+                                contentDescription = "Ícone de Cadeado de Senha"
                             )
                         }
                     )
