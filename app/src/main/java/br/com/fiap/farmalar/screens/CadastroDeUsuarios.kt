@@ -309,7 +309,7 @@ fun CadastroDeUsuarios(navController: NavController) {
                         placeholder = {
                             Text(
                                 modifier = Modifier.padding(horizontal = 4.dp),
-                                text = "Digite no formato: DD/MM/AAAA",
+                                text = "Digite no formato: AAAA-MM-DD",
                                 fontSize = 14.sp,
                                 fontFamily = Inter,
                                 fontWeight = FontWeight.SemiBold,

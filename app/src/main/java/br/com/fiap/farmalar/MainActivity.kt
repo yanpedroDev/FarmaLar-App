@@ -1,6 +1,8 @@
 package br.com.fiap.farmalar
 
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,22 +13,25 @@ import androidx.compose.ui.res.colorResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.farmalar.screens.MenuScreen
-import br.com.fiap.farmalar.screens.BuscaScreen
 import br.com.fiap.farmalar.dao.salvaMedicamentosPadroes
 import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.repository.MedicamentoRepository
 import br.com.fiap.farmalar.screens.BoasVindas
+import br.com.fiap.farmalar.screens.BuscaScreen
 import br.com.fiap.farmalar.screens.CadastroDeFarmacias
 import br.com.fiap.farmalar.screens.CadastroDeFarmacias2
 import br.com.fiap.farmalar.screens.CadastroDeUsuarios
 import br.com.fiap.farmalar.screens.LoginScreen
+import br.com.fiap.farmalar.screens.MenuScreen
 import br.com.fiap.farmalar.screens.ReservaScreen
 import br.com.fiap.farmalar.ui.theme.FarmaLarTheme
 
-class MainActivity : ComponentActivity() {
+
+class MainActivity : ComponentActivity(), Runnable{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val policy = ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
         setContent {
             FarmaLarTheme {
                 // A surface container using the 'background' color from the theme
@@ -36,7 +41,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val context = LocalContext.current
                     val medicamentoRepository = MedicamentoRepository(context)
-                    salvaMedicamentosPadroes(context, medicamentoRepository)
+                    run()
                     val medicamentoViewModel = MedicamentoViewModel()
 
                     val navController = rememberNavController()
@@ -72,6 +77,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun run() {
+        salvaMedicamentosPadroes()
     }
 }
 
