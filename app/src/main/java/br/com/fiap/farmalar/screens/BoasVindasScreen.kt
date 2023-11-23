@@ -30,10 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
-import br.com.fiap.farmalar.ui.theme.Inter
-import androidx.compose.foundation.Image
-import androidx.compose.material3.contentColorFor
 import br.com.fiap.farmalar.components.DivisorLine
+import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
 fun BoasVindas(navController: NavController) {
