@@ -34,7 +34,9 @@ import br.com.fiap.farmalar.repository.MedicamentoRepository
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
-fun BuscaScreen(navController: NavController, context: Context, medicamentoViewModel: MedicamentoViewModel, medicamentoRepository: MedicamentoRepository) {
+fun BuscaScreen(
+    navController: NavController,
+    context: Context, medicamentoViewModel: MedicamentoViewModel, medicamentoRepository: MedicamentoRepository) {
 
     val medicamentos: List<Medicamento> = medicamentoViewModel.listaMedicamentosPelasPatologias(medicamentoRepository)
 

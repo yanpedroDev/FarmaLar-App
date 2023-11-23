@@ -81,7 +81,7 @@ fun CardSelect(
             ) {
                 Button(
                     onClick = {
-                        navController.navigate("reserva")
+                        navController.navigate("consulta-medicamento")
                     },
                     modifier = Modifier
                         .size(120.dp, 37.dp),
