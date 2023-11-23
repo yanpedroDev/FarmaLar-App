@@ -322,7 +322,7 @@ fun CadastroDeFarmacias(navController: NavController) {
                         placeholder = {
                             Text(
                                 modifier = Modifier.padding(horizontal = 4.dp),
-                                text = "Digite o seu CEP",
+                                text = "Digite no formato: XX.XXX-XXX",
                                 fontSize = 14.sp,
                                 fontFamily = Inter,
                                 fontWeight = FontWeight.SemiBold,
@@ -437,22 +437,20 @@ fun CadastroDeFarmacias(navController: NavController) {
                 }
             }
 
-            // Coluna do Logradouro [4]
+            // Coluna do Complemento
             Column(
                 Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
                 verticalArrangement = Arrangement.Center
-                // Input do CEP [4]
+                // Input do Complemento
             ) {
                 OutlinedTextField(
-                    // Valor do Input Logradouro
+                    // Valor do Input Complemento
                     value = inputComplemento,
                     // Variavel de mudança de estado
                     onValueChange = { inputComplemento = it },
                     shape = RoundedCornerShape(size = 20.dp),
                     modifier = Modifier.size(325.dp, 60.dp),
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text
-                    ),
+                    keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
                     singleLine = true,
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         containerColor = colorResource(id = R.color.white),
@@ -487,22 +485,20 @@ fun CadastroDeFarmacias(navController: NavController) {
                 )
             }
 
-            // Coluna do Complemento [4]
+            // Coluna do Logradouro
             Column(
                 Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
                 verticalArrangement = Arrangement.Center
-                // Input do Complemento [4]
+                // Input do Logradouro
             ) {
                 OutlinedTextField(
-                    // Valor do Input Complemento
-                    value = inputCEP,
+                    // Valor do Input Logradouro
+                    value = inputLogradouro,
                     // Variavel de mudança de estado
-                    onValueChange = { inputCEP = it },
+                    onValueChange = { inputLogradouro = it },
                     shape = RoundedCornerShape(size = 20.dp),
                     modifier = Modifier.size(325.dp, 60.dp),
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number
-                    ),
+                    keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
                     singleLine = true,
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         containerColor = colorResource(id = R.color.white),
@@ -549,7 +545,7 @@ fun CadastroDeFarmacias(navController: NavController) {
                 Button(
                     modifier = Modifier.size(325.dp, 55.dp),
                     onClick = {
-                        navController.navigate("login")
+                        navController.navigate("cadastro-farmacia2")
                     },
                     colors = ButtonDefaults.buttonColors(
                         colorResource
