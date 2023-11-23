@@ -21,6 +21,7 @@ import br.com.fiap.farmalar.screens.BuscaScreen
 import br.com.fiap.farmalar.screens.CadastroDeFarmacias
 import br.com.fiap.farmalar.screens.CadastroDeFarmacias2
 import br.com.fiap.farmalar.screens.CadastroDeUsuarios
+import br.com.fiap.farmalar.screens.ConsultaMedicamento
 import br.com.fiap.farmalar.screens.LoginScreen
 import br.com.fiap.farmalar.screens.MenuScreen
 import br.com.fiap.farmalar.screens.ReservaScreen
@@ -69,6 +70,13 @@ class MainActivity : ComponentActivity(), Runnable{
                         }
                         composable(route = "busca") {
                             BuscaScreen(navController, context, medicamentoViewModel, medicamentoRepository)
+                        }
+                        composable(route = "consulta-medicamento") {
+                            ConsultaMedicamento(
+                                navController,
+                                medicamentoViewModel,
+                                medicamentoRepository
+                            )
                         }
                         composable(route = "reserva") {
                             ReservaScreen(navController)
