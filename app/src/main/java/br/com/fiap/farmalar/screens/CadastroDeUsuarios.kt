@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -62,7 +63,7 @@ fun CadastroDeUsuarios(navController: NavController) {
     }
 
     var sexoSelecionado by remember {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
     }
 
 
@@ -222,8 +223,7 @@ fun CadastroDeUsuarios(navController: NavController) {
                 }
 
                 // Coluna do Sexo [3]
-                Column(
-                ) {
+                Column {
                     // Input do Sexo [3]
                     Row(
                         verticalAlignment = Alignment.CenterVertically
