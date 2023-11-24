@@ -369,7 +369,7 @@ fun CadastroDeUsuarios(navController: NavController) {
                         placeholder = {
                             Text(
                                 modifier = Modifier.padding(horizontal = 4.dp),
-                                text = "Digite sua senha",
+                                text = "Digite sua senha (máx. 6 dígitos)",
                                 fontSize = 14.sp,
                                 fontFamily = Inter,
                                 fontWeight = FontWeight.SemiBold,
@@ -471,7 +471,7 @@ fun CadastroDeUsuarios(navController: NavController) {
                     ) {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
-                            text = "Criar",
+                            text = "Cadastrar",
                             textAlign = TextAlign.Center,
                             fontFamily = Inter,
                             fontSize = 28.sp,

@@ -84,7 +84,6 @@ fun CadastroDeFarmacias2(navController: NavController) {
             Spacer(modifier = Modifier.padding(vertical = 4.dp))
 
             Column {
-
                 // Titulo Cadastrar Farmácia [0]
                 Column {
                     Text(
@@ -513,7 +512,7 @@ fun CadastroDeFarmacias2(navController: NavController) {
                     Button(
                         modifier = Modifier.size(325.dp, 55.dp),
                         onClick = {
-                            navController.navigate("login")
+                            navController.navigate("cadastro-farmacia3")
                         },
                         colors = ButtonDefaults.buttonColors(
                             colorResource
