@@ -20,6 +20,7 @@ import br.com.fiap.farmalar.screens.BoasVindas
 import br.com.fiap.farmalar.screens.BuscaScreen
 import br.com.fiap.farmalar.screens.CadastroDeFarmacias
 import br.com.fiap.farmalar.screens.CadastroDeFarmacias2
+import br.com.fiap.farmalar.screens.CadastroDeFarmacias3
 import br.com.fiap.farmalar.screens.CadastroDeUsuarios
 import br.com.fiap.farmalar.screens.ConsultaMedicamento
 import br.com.fiap.farmalar.screens.LoginScreen
@@ -64,6 +65,9 @@ class MainActivity : ComponentActivity(), Runnable{
                         }
                         composable(route = "cadastro-farmacia2") {
                             CadastroDeFarmacias2(navController)
+                        }
+                        composable(route = "cadastro-farmacia3") {
+                            CadastroDeFarmacias3(navController)
                         }
                         composable(route = "menu") {
                             MenuScreen(navController, medicamentoViewModel)
