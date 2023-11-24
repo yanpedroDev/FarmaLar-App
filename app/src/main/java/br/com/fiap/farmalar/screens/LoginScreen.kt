@@ -40,6 +40,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
+import br.com.fiap.farmalar.model.LoginUsuarioDTO
+import br.com.fiap.farmalar.model.UsuarioDTO
+import br.com.fiap.farmalar.service.RetrofitFactory
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -273,17 +276,15 @@ fun LoginScreen(navController: NavController) {
             Button(
                 modifier = Modifier.size(325.dp, 65.dp),
                 onClick = {
+                    val loginUsuarioDTO = LoginUsuarioDTO(email = inputEmail, senha = inputSenha)
+
                     if (inputEmail.isEmpty())
                         emailError = true
-                    if (inputEmail.isNotEmpty()) {
-                        (navController.navigate("menu"))
-                    }
                     if (inputSenha.isEmpty())
                         senhaError = true
-                    if (inputSenha.isNotEmpty()) {
-                        (navController.navigate("menu"))
+                    if (loginUsuario(loginUsuarioDTO)){
+                        navController.navigate("menu")
                     }
-
                 },
                 colors = ButtonDefaults.buttonColors(
                     colorResource
@@ -337,4 +338,12 @@ fun LoginScreen(navController: NavController) {
         }
 
     }
+}
+
+fun loginUsuario(loginUsuarioDTO: LoginUsuarioDTO): Boolean {
+    val retrofit = RetrofitFactory().getApiService()
+    val call = retrofit.loginUsuario(loginUsuarioDTO)
+    val response = call.execute()
+
+    return response.code() == 200
 }

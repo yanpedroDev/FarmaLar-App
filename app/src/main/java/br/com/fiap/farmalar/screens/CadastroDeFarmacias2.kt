@@ -42,6 +42,7 @@ import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.DivisorLine
 import br.com.fiap.farmalar.components.HeaderLogo
+import br.com.fiap.farmalar.model.UsuarioDTO
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -512,6 +513,11 @@ fun CadastroDeFarmacias2(navController: NavController) {
                     Button(
                         modifier = Modifier.size(325.dp, 55.dp),
                         onClick = {
+                            val usuarioDTO = UsuarioDTO(
+                                nome = inputNome?: "", email = inputEmail?: "",
+                                senha = inputSenha ?: "", sexo = null)
+
+                            salvaUsuario(usuarioDTO)
                             navController.navigate("cadastro-farmacia3")
                         },
                         colors = ButtonDefaults.buttonColors(

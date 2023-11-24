@@ -28,14 +28,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
-import br.com.fiap.farmalar.model.Medicamento
+import br.com.fiap.farmalar.model.MedicamentoDTO
 import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @Composable
 fun CardSelect(
     navController: NavController,
-    medicamento: Medicamento,
+    medicamento: MedicamentoDTO,
     medicamentoViewModel: MedicamentoViewModel
 ) {
     Card(
@@ -81,7 +81,7 @@ fun CardSelect(
             ) {
                 Button(
                     onClick = {
-                        navController.navigate("consulta-medicamento")
+                        navController.navigate("consulta-medicamento/"+medicamento.nome)
                     },
                     modifier = Modifier
                         .size(120.dp, 37.dp),

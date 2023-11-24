@@ -20,7 +20,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.farmalar.R
-import br.com.fiap.farmalar.model.Medicamento
 import br.com.fiap.farmalar.model.MedicamentoViewModel
 import br.com.fiap.farmalar.ui.theme.Inter
 

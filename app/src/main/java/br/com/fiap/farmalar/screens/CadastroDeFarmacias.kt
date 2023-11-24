@@ -40,6 +40,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.HeaderLogo
+import br.com.fiap.farmalar.model.EnderecoDTO
+import br.com.fiap.farmalar.model.FarmaciaDTO
+import br.com.fiap.farmalar.model.UsuarioDTO
+import br.com.fiap.farmalar.service.RetrofitFactory
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -545,6 +549,16 @@ fun CadastroDeFarmacias(navController: NavController) {
                 Button(
                     modifier = Modifier.size(325.dp, 55.dp),
                     onClick = {
+                        val enderecoDTO = EnderecoDTO(bairro = inputBairro ?: "",
+                                                      cep = inputCEP ?: "",
+                                                      numero = inputNumero?.toIntOrNull() ?: 0,
+                                                      rua = inputLogradouro ?: "")
+                        val farmaciaDTO = FarmaciaDTO(razaoSocial = inputRazaoSocial ?: "",
+                                                      cnpj = inputCNPJ ?: "",
+                                                      endereco = enderecoDTO)
+
+                        salvaFarmacia(farmaciaDTO)
+
                         navController.navigate("cadastro-farmacia2")
                     },
                     colors = ButtonDefaults.buttonColors(
@@ -567,5 +581,30 @@ fun CadastroDeFarmacias(navController: NavController) {
             }
         }
     }
+}
+
+fun salvaFarmacia(farmaciaDTO: FarmaciaDTO) {
+    val retrofit = RetrofitFactory().getApiService()
+
+    if (farmaciaDTO.razaoSocial.isNotBlank() && verificaSeFarmaciaJaExiste(farmaciaDTO.razaoSocial) == null){
+        val call = retrofit.cadastraFarmacia(farmaciaDTO)
+        try {
+            call.execute()
+        }catch (exception: Exception){
+            println(exception.stackTrace)
+        }
+    }
+}
+
+fun verificaSeFarmaciaJaExiste(razaoSocial: String): FarmaciaDTO? {
+    val call = RetrofitFactory().getApiService().buscaFarmaciaPorRazaoSocial(razaoSocial)
+    var farmaciaDTO: FarmaciaDTO? = null
+    try {
+        farmaciaDTO = call.execute().body()!!
+    }catch (exception: Exception){
+        println(exception.stackTrace)
+    }
+
+    return farmaciaDTO
 }
 

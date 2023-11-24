@@ -11,9 +11,9 @@ class RetrofitFactory {
     private val URL = " http://10.0.2.2:8081/"
 
     var client = OkHttpClient.Builder()
-        .connectTimeout(100, TimeUnit.SECONDS)
-        .writeTimeout(100, TimeUnit.SECONDS)
-        .readTimeout(100, TimeUnit.SECONDS)
+        .connectTimeout(5, TimeUnit.SECONDS)
+        .writeTimeout(5, TimeUnit.SECONDS)
+        .readTimeout(5, TimeUnit.SECONDS)
         .build()
 
     private val retrofitFactory = Retrofit

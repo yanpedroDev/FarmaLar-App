@@ -42,7 +42,6 @@ import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.HeaderLogo
 import br.com.fiap.farmalar.model.MedicamentoViewModel
-import br.com.fiap.farmalar.repository.MedicamentoRepository
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,10 +49,8 @@ import br.com.fiap.farmalar.ui.theme.Inter
 fun ConsultaMedicamento(
     navController: NavController,
     medicamentoViewModel: MedicamentoViewModel,
-    medicamentoRepository: MedicamentoRepository
+    nomeMedicamento: String?
 ) {
-
-    medicamentoViewModel.listaMedicamentosPelasPatologias(medicamentoRepository)
 
     var searchText by remember {
         mutableStateOf("")
@@ -144,7 +141,7 @@ fun ConsultaMedicamento(
                         .fillMaxWidth()
                         .offset(y = (-25).dp),
                     textAlign = TextAlign.Center,
-                    text = "Nome do Medicamento",
+                    text = nomeMedicamento.orEmpty(),
                     fontFamily = Inter,
                     fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,

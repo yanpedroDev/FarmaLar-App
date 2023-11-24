@@ -44,6 +44,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.HeaderLogo
+import br.com.fiap.farmalar.model.UsuarioDTO
+import br.com.fiap.farmalar.service.RetrofitFactory
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -460,6 +462,14 @@ fun CadastroDeUsuarios(navController: NavController) {
                     Button(
                         modifier = Modifier.size(325.dp, 55.dp),
                         onClick = {
+                            val sexo = if (sexoSelecionado == 0) "MASCULINO" else "FEMININO"
+                            val usuarioDTO = UsuarioDTO(
+                                nome = inputNome?: "", email = inputEmail?: "",
+                                                        dataNascimento = inputData ?: "",
+                                                        senha = inputSenha ?: "",
+                                                        sexo = sexo ?: null)
+
+                            salvaUsuario(usuarioDTO)
                             navController.navigate("login")
                         },
                         colors = ButtonDefaults.buttonColors(
@@ -483,4 +493,30 @@ fun CadastroDeUsuarios(navController: NavController) {
             }
         }
     }
+}
+
+
+fun salvaUsuario(usuarioDTO: UsuarioDTO) {
+    val retrofit = RetrofitFactory().getApiService()
+
+    if (usuarioDTO.email.isNotBlank() && verificaSeUsuarioJaExiste(usuarioDTO.email) == null){
+        val call = retrofit.cadastraUsuario(usuarioDTO)
+        try {
+            call.execute()
+        }catch (exception: Exception){
+            println(exception.stackTrace)
+        }
+    }
+}
+
+fun verificaSeUsuarioJaExiste(email: String): UsuarioDTO? {
+    val call = RetrofitFactory().getApiService().buscaUsuarioPorEmail(email)
+    var usuarioDTO: UsuarioDTO? = null
+    try {
+        usuarioDTO = call.execute().body()!!
+    }catch (exception: Exception){
+        println(exception.stackTrace)
+    }
+
+    return usuarioDTO
 }

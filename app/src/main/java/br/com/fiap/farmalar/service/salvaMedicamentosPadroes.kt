@@ -1,7 +1,6 @@
-package br.com.fiap.farmalar.dao
+package br.com.fiap.farmalar.service
 
 import br.com.fiap.farmalar.model.MedicamentoDTO
-import br.com.fiap.farmalar.service.RetrofitFactory
 
 fun salvaMedicamentosPadroes() {
 
@@ -11,14 +10,25 @@ fun salvaMedicamentosPadroes() {
     if (listaMedicamentoDTOsApi().isEmpty()){
         for (MedicamentoDTO in listaMedicamentoDTOs){
             val call = retrofit.cadastraMedicamento(MedicamentoDTO);
-            call.execute()
+            try {
+                call.execute()
+            }catch (exception: Exception){
+                println(exception.stackTrace)
+            }
         }
     }
 }
 
 fun listaMedicamentoDTOsApi() : List<MedicamentoDTO>{
     val call = RetrofitFactory().getApiService().listaMedicamentos()
-    var listaMedicamentos = call.execute().body()!!
+    var listaMedicamentos : List<MedicamentoDTO> = listOf()
+
+    try {
+        listaMedicamentos = call.execute().body()!!
+    }catch (exception: Exception){
+        println(exception.stackTrace)
+    }
+
     return listaMedicamentos
 }
 
