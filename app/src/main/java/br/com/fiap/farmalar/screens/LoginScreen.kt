@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -49,9 +50,19 @@ fun LoginScreen(navController: NavController) {
         mutableStateOf("")
     }
 
+    var emailError by remember {
+        mutableStateOf(false)
+    }
+
     var inputSenha by remember {
         mutableStateOf("")
     }
+
+    var senhaError by remember {
+        mutableStateOf(false)
+    }
+
+    var tamanhoSenha = 6
 
     Box(
         modifier = Modifier
@@ -119,9 +130,11 @@ fun LoginScreen(navController: NavController) {
                 // Valor do Input Email
                 value = inputEmail,
                 // Variavel de mudança de estado
-                onValueChange = { inputEmail = it },
+                onValueChange = { inputEmail = it
+                                if (inputEmail.length > 0) emailError = false},
                 shape = RoundedCornerShape(size = 20.dp),
                 modifier = Modifier.size(325.dp, 60.dp),
+                isError = emailError,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 singleLine = true,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -134,11 +147,11 @@ fun LoginScreen(navController: NavController) {
                     focusedLeadingIconColor = colorResource(id = R.color.orange_text),
                     unfocusedLabelColor = colorResource(id = R.color.half_black),
                     focusedLabelColor = colorResource(id = R.color.orange_text),
-
-                    ),
+                ),
                 label = {
                     Text(
-                        modifier = Modifier.padding(horizontal = 2.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 2.dp),
                         text = "E-mail",
                         fontSize = 20.sp,
                         fontFamily = Inter,
@@ -164,6 +177,16 @@ fun LoginScreen(navController: NavController) {
                         contentDescription = "Ícone de Email"
                     )
                 })
+            if (emailError) {
+                Text(
+                    text = "E-mail é obrigatório!",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .offset(x = (-18).dp, y = 5.dp),
+                    color = colorResource(id = R.color.orange_text),
+                    textAlign = TextAlign.End
+                )
+            }
         }
 
         // Coluna da Senha
@@ -176,9 +199,12 @@ fun LoginScreen(navController: NavController) {
                 // Valor do Input Senha
                 value = inputSenha,
                 // Variavel de mudança de estado
-                onValueChange = { inputSenha = it },
+                onValueChange = { if (it.length <= tamanhoSenha) inputSenha = it
+                                  if (inputSenha.length > 0) senhaError = false
+                },
                 shape = RoundedCornerShape(size = 20.dp),
                 modifier = Modifier.size(325.dp, 60.dp),
+                isError = senhaError,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.NumberPassword
                 ),
@@ -224,11 +250,20 @@ fun LoginScreen(navController: NavController) {
                     )
                 }
             )
+            if (senhaError) {
+                Text(
+                    text = "Senha é obrigatória!",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .offset(x = (-18).dp, y = 5.dp),
+                    color = colorResource(id = R.color.orange_text),
+                    textAlign = TextAlign.End
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(35.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
-        // Coluna do Botao Criar
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -238,14 +273,24 @@ fun LoginScreen(navController: NavController) {
             Button(
                 modifier = Modifier.size(325.dp, 65.dp),
                 onClick = {
-                    navController.navigate("menu")
+                    if (inputEmail.isEmpty())
+                        emailError = true
+                    if (inputEmail.isNotEmpty()) {
+                        (navController.navigate("menu"))
+                    }
+                    if (inputSenha.isEmpty())
+                        senhaError = true
+                    if (inputSenha.isNotEmpty()) {
+                        (navController.navigate("menu"))
+                    }
+
                 },
                 colors = ButtonDefaults.buttonColors(
                     colorResource
                         (id = R.color.orange_button)
                 ),
-                elevation = ButtonDefaults.elevatedButtonElevation(6.dp),
-                border = BorderStroke(5.dp, colorResource(id = R.color.orange_text))
+                elevation = ButtonDefaults.elevatedButtonElevation(4.dp),
+                border = BorderStroke(2.dp, colorResource(id = R.color.orange_text))
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
@@ -258,5 +303,38 @@ fun LoginScreen(navController: NavController) {
                 )
             }
         }
+
+        Spacer(modifier = Modifier.height(105.dp))
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Button(
+                modifier = Modifier.size(200.dp, 50.dp),
+                onClick = {
+                    navController.navigate("boas-vindas")
+                },
+                colors = ButtonDefaults.buttonColors(
+                    colorResource
+                        (id = R.color.white)
+                ),
+                elevation = ButtonDefaults.elevatedButtonElevation(4.dp),
+                border = BorderStroke(2.dp, colorResource(id = R.color.orange_text))
+            ) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = "Voltar",
+                    textAlign = TextAlign.Center,
+                    fontFamily = Inter,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = colorResource(id = R.color.orange_text)
+                )
+            }
+        }
+
     }
 }
