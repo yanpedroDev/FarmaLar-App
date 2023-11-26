@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -41,7 +40,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.model.LoginUsuarioDTO
-import br.com.fiap.farmalar.model.UsuarioDTO
 import br.com.fiap.farmalar.service.RetrofitFactory
 import br.com.fiap.farmalar.ui.theme.Inter
 
@@ -65,7 +63,7 @@ fun LoginScreen(navController: NavController) {
         mutableStateOf(false)
     }
 
-    var tamanhoSenha = 6
+    val tamanhoSenha = 6
 
     Box(
         modifier = Modifier

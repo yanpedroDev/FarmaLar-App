@@ -60,6 +60,10 @@ fun CadastroDeUsuarios(navController: NavController) {
         mutableStateOf("")
     }
 
+    var stringError by remember {
+        mutableStateOf(false)
+    }
+
     var inputData by remember {
         mutableStateOf("")
     }
@@ -68,7 +72,6 @@ fun CadastroDeUsuarios(navController: NavController) {
         mutableIntStateOf(0)
     }
 
-
     var inputSenha by remember {
         mutableStateOf("")
     }
@@ -76,6 +79,12 @@ fun CadastroDeUsuarios(navController: NavController) {
     var inputConfirmarSenha by remember {
         mutableStateOf("")
     }
+
+    var senhaError by remember {
+        mutableStateOf(false)
+    }
+
+    val tamanhoSenha = 6
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -108,7 +117,7 @@ fun CadastroDeUsuarios(navController: NavController) {
 
                 // Coluna do Nome Completo [1]
                 Column(
-                    Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                    Modifier.padding(horizontal = 12.dp, vertical = 5.dp),
                     verticalArrangement = Arrangement.Center
                 )
                 // Input do Nome Completo [1]
@@ -117,7 +126,8 @@ fun CadastroDeUsuarios(navController: NavController) {
                         // Valor do Input Nome
                         value = inputNome,
                         // Variavel de mudança de estado
-                        onValueChange = { inputNome = it },
+                        onValueChange = { inputNome = it
+                            if (inputNome.isNotEmpty()) stringError = false},
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         singleLine = true,
@@ -164,11 +174,21 @@ fun CadastroDeUsuarios(navController: NavController) {
                         },
                         keyboardOptions = KeyboardOptions(KeyboardCapitalization.Words)
                     )
+                    if (stringError) {
+                        Text(
+                            text = "Nome é obrigatório!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
                 // Coluna do Email [2]
                 Column(
-                    Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                    Modifier.padding(horizontal = 12.dp, vertical = 5.dp),
                     verticalArrangement = Arrangement.Center
                 )
                 // Input do Email [2]
@@ -177,7 +197,8 @@ fun CadastroDeUsuarios(navController: NavController) {
                     // Valor do Input Email
                     value = inputEmail,
                     // Variavel de mudança de estado
-                    onValueChange = { inputEmail = it },
+                    onValueChange = { inputEmail = it
+                        if (inputEmail.isNotEmpty()) stringError = false},
                     shape = RoundedCornerShape(size = 20.dp),
                     modifier = Modifier.size(325.dp, 60.dp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -222,10 +243,20 @@ fun CadastroDeUsuarios(navController: NavController) {
                             contentDescription = "Ícone de Email"
                         )
                     })
+                    if (stringError) {
+                        Text(
+                            text = "E-mail é obrigatório!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
                 // Coluna do Sexo [3]
-                Column {
+                Column(modifier = Modifier.offset(y = (-5).dp)) {
                     // Input do Sexo [3]
                     Row(
                         verticalAlignment = Alignment.CenterVertically
@@ -275,7 +306,9 @@ fun CadastroDeUsuarios(navController: NavController) {
 
                 // Coluna da Data de Nascimento
                 Column(
-                    Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                    Modifier
+                        .padding(horizontal = 12.dp)
+                        .offset(y = (-10).dp),
                     verticalArrangement = Arrangement.Center
                     // Input da Data de Nascimento
                 ) {
@@ -283,7 +316,8 @@ fun CadastroDeUsuarios(navController: NavController) {
                         // Valor do Input Data de Nascimento
                         value = inputData,
                         // Variavel de mudança de estado
-                        onValueChange = { inputData = it },
+                        onValueChange = { inputData = it
+                            if (inputData.isNotEmpty()) stringError = false},
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -328,11 +362,22 @@ fun CadastroDeUsuarios(navController: NavController) {
                             )
                         }
                     )
+                    if (stringError) {
+                        Text(
+                            text = "Data de nascimento obrigatória!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-15).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
                 // Coluna da Senha
                 Column(
-                    Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                    Modifier
+                        .padding(horizontal = 12.dp),
                     verticalArrangement = Arrangement.Center
                     // Input da Senha
                 ) {
@@ -340,7 +385,9 @@ fun CadastroDeUsuarios(navController: NavController) {
                         // Valor do Input Senha
                         value = inputSenha,
                         // Variavel de mudança de estado
-                        onValueChange = { inputSenha = it },
+                        onValueChange = { if (it.length <= tamanhoSenha) inputSenha = it
+                            if (inputSenha.isNotEmpty()) senhaError = false
+                        },
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         keyboardOptions = KeyboardOptions(
@@ -388,11 +435,21 @@ fun CadastroDeUsuarios(navController: NavController) {
                             )
                         }
                     )
+                    if (senhaError) {
+                        Text(
+                            text = "Senha é obrigatória!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
                 // Coluna de Confirmar Senha [5]
                 Column(
-                    Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                    Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
                     verticalArrangement = Arrangement.Center
                     // Input do Confirmar Senha [5]
                 ) {
@@ -400,7 +457,8 @@ fun CadastroDeUsuarios(navController: NavController) {
                         // Valor do Input Senha
                         value = inputConfirmarSenha,
                         // Variavel de mudança de estado
-                        onValueChange = { inputConfirmarSenha = it },
+                        onValueChange = { if (it.length <= tamanhoSenha) inputConfirmarSenha = it
+                            if (inputConfirmarSenha.isNotEmpty()) senhaError = false },
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         keyboardOptions = KeyboardOptions(
@@ -448,9 +506,19 @@ fun CadastroDeUsuarios(navController: NavController) {
                             )
                         }
                     )
+                    if (senhaError) {
+                        Text(
+                            text = "Confirme sua senha!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
-                Spacer(modifier = Modifier.height(35.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
                 // Coluna do Botao Criar
                 Column(
@@ -462,15 +530,24 @@ fun CadastroDeUsuarios(navController: NavController) {
                     Button(
                         modifier = Modifier.size(325.dp, 55.dp),
                         onClick = {
+                            if (inputEmail.isEmpty())
+                                stringError = true
+                            if (inputSenha.isEmpty())
+                                senhaError = true
                             val sexo = if (sexoSelecionado == 0) "MASCULINO" else "FEMININO"
                             val usuarioDTO = UsuarioDTO(
-                                nome = inputNome?: "", email = inputEmail?: "",
-                                                        dataNascimento = inputData ?: "",
-                                                        senha = inputSenha ?: "",
-                                                        sexo = sexo ?: null)
-
+                                nome = inputNome, email = inputEmail,
+                                                        dataNascimento = inputData,
+                                                        senha = inputSenha,
+                                                        sexo = sexo
+                            )
                             salvaUsuario(usuarioDTO)
-                            navController.navigate("login")
+                            if (inputNome.isNotEmpty()
+                                && inputEmail.isNotEmpty()
+                                && inputSenha.isNotEmpty()
+                                && inputConfirmarSenha.isNotEmpty()) {
+                                navController.navigate("login")
+                            }
                         },
                         colors = ButtonDefaults.buttonColors(
                             colorResource
