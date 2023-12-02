@@ -42,13 +42,16 @@ import br.com.fiap.farmalar.R
 import br.com.fiap.farmalar.components.HeaderLogo
 import br.com.fiap.farmalar.model.EnderecoDTO
 import br.com.fiap.farmalar.model.FarmaciaDTO
-import br.com.fiap.farmalar.model.UsuarioDTO
 import br.com.fiap.farmalar.service.RetrofitFactory
 import br.com.fiap.farmalar.ui.theme.Inter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CadastroDeFarmacias(navController: NavController) {
+
+    var stringError by remember {
+        mutableStateOf(false)
+    }
 
     var inputRazaoSocial by remember {
         mutableStateOf("")
@@ -111,18 +114,17 @@ fun CadastroDeFarmacias(navController: NavController) {
                     )
                 }
 
-                // Coluna do Nome Completo [1]
                 Column(
                     Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
                     verticalArrangement = Arrangement.Center
                 )
-                // Input do Nome Completo [1]
                 {
                     OutlinedTextField(
                         // Valor do Input Nome
                         value = inputRazaoSocial,
                         // Variavel de mudança de estado
-                        onValueChange = { inputRazaoSocial = it },
+                        onValueChange = {  inputRazaoSocial = it
+                            if (inputRazaoSocial.isNotEmpty()) stringError = false },
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         singleLine = true,
@@ -169,9 +171,18 @@ fun CadastroDeFarmacias(navController: NavController) {
                         },
                         keyboardOptions = KeyboardOptions(KeyboardCapitalization.Words)
                     )
+                    if (stringError) {
+                        Text(
+                            text = "Razão Social é obrigatória!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
-                // Coluna do Email [2]
                 Column(
                     Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
                     verticalArrangement = Arrangement.Center
@@ -182,7 +193,8 @@ fun CadastroDeFarmacias(navController: NavController) {
                         // Valor do Input CNPJ
                         value = inputCNPJ,
                         // Variavel de mudança de estado
-                        onValueChange = { inputCNPJ = it },
+                        onValueChange = { inputCNPJ = it
+                            if (inputCNPJ.isNotEmpty()) stringError = false  },
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -224,9 +236,19 @@ fun CadastroDeFarmacias(navController: NavController) {
                                     .offset(8.dp)
                                     .size(30.dp, 30.dp),
                                 painter = painterResource(id = R.drawable.input_cnpj),
-                                contentDescription = "Ícone de Email"
+                                contentDescription = "Ícone de Documento"
                             )
                         })
+                    if (stringError) {
+                        Text(
+                            text = "CNPJ é obrigatório!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
                 // Coluna da Data de Abertura [3]
@@ -239,7 +261,8 @@ fun CadastroDeFarmacias(navController: NavController) {
                         // Valor do Input Data de Abertura
                         value = inputDataDeAbertura,
                         // Variavel de mudança de estado
-                        onValueChange = { inputDataDeAbertura = it },
+                        onValueChange = { inputDataDeAbertura = it
+                            if (inputDataDeAbertura.isNotEmpty()) stringError = false },
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -284,6 +307,16 @@ fun CadastroDeFarmacias(navController: NavController) {
                             )
                         }
                     )
+                    if (stringError) {
+                        Text(
+                            text = "Preencha a data de abertura!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
                 // Coluna do CEP [4]
@@ -296,7 +329,8 @@ fun CadastroDeFarmacias(navController: NavController) {
                         // Valor do Input CEP
                         value = inputCEP,
                         // Variavel de mudança de estado
-                        onValueChange = { inputCEP = it },
+                        onValueChange = { inputCEP = it
+                            if (inputCEP.isNotEmpty()) stringError = false  },
                         shape = RoundedCornerShape(size = 20.dp),
                         modifier = Modifier.size(325.dp, 60.dp),
                         keyboardOptions = KeyboardOptions(
@@ -343,6 +377,16 @@ fun CadastroDeFarmacias(navController: NavController) {
                             )
                         }
                     )
+                    if (stringError) {
+                        Text(
+                            text = "CEP é obrigatório!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = (-18).dp, y = 5.dp),
+                            color = colorResource(id = R.color.orange_text),
+                            textAlign = TextAlign.End
+                        )
+                    }
                 }
 
                 // Linha do Bairro [5]
@@ -549,17 +593,30 @@ fun CadastroDeFarmacias(navController: NavController) {
                 Button(
                     modifier = Modifier.size(325.dp, 55.dp),
                     onClick = {
-                        val enderecoDTO = EnderecoDTO(bairro = inputBairro ?: "",
-                                                      cep = inputCEP ?: "",
-                                                      numero = inputNumero?.toIntOrNull() ?: 0,
-                                                      rua = inputLogradouro ?: "")
-                        val farmaciaDTO = FarmaciaDTO(razaoSocial = inputRazaoSocial ?: "",
-                                                      cnpj = inputCNPJ ?: "",
+                        if (inputRazaoSocial.isEmpty())
+                            stringError = true
+                        if (inputCNPJ.isEmpty())
+                            stringError = true
+                        if (inputDataDeAbertura.isEmpty())
+                            stringError = true
+                        if (inputCEP.isEmpty())
+                            stringError = true
+                        val enderecoDTO = EnderecoDTO(bairro = inputBairro,
+                                                      cep = inputCEP,
+                                                      numero = inputNumero.toIntOrNull() ?: 0,
+                                                      rua = inputLogradouro
+                        )
+                        val farmaciaDTO = FarmaciaDTO(razaoSocial = inputRazaoSocial,
+                                                      cnpj = inputCNPJ,
                                                       endereco = enderecoDTO)
 
                         salvaFarmacia(farmaciaDTO)
-
-                        navController.navigate("cadastro-farmacia2")
+                        if (inputRazaoSocial.isNotEmpty()
+                            && inputCNPJ.isNotEmpty()
+                            && inputDataDeAbertura.isNotEmpty()
+                            && inputCEP.isNotEmpty()) {
+                            navController.navigate("cadastro-farmacias2")
+                        }
                     },
                     colors = ButtonDefaults.buttonColors(
                         colorResource

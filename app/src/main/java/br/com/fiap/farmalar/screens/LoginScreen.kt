@@ -275,14 +275,16 @@ fun LoginScreen(navController: NavController) {
                 modifier = Modifier.size(325.dp, 65.dp),
                 onClick = {
                     val loginUsuarioDTO = LoginUsuarioDTO(email = inputEmail, senha = inputSenha)
-
                     if (inputEmail.isEmpty())
                         emailError = true
                     if (inputSenha.isEmpty())
                         senhaError = true
-                    if (loginUsuario(loginUsuarioDTO)){
+
+                   if (inputEmail.isNotEmpty()
+                       && inputSenha.isNotEmpty()
+                       && loginUsuario(loginUsuarioDTO)) {
                         navController.navigate("menu")
-                    }
+                   }
                 },
                 colors = ButtonDefaults.buttonColors(
                     colorResource
